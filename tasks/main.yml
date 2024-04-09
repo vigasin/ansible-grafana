@@ -23,12 +23,16 @@
     - grafana_dashboards
 
 - include_tasks: install.yml
-  become: true
+  args:
+    apply:
+      become: true
   tags:
     - grafana_install
 
 - include_tasks: configure.yml
-  become: true
+  args:
+    apply:
+      become: true
   tags:
     - grafana_configure
 
