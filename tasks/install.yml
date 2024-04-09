@@ -42,10 +42,9 @@
 
 - block:
     - name: Import Grafana GPG signing key [Debian/Ubuntu]
-      apt_key:
-        url: "https://packages.grafana.com/gpg.key"
-        state: present
-        validate_certs: false
+      ansible.builtin.get_url:
+        url: https://packages.grafana.com/gpg.key
+        dest: /usr/share/keyrings/grafana-keyring.asc
       register: _add_apt_key
       until: _add_apt_key is succeeded
       retries: 5
